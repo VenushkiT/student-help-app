@@ -1,5 +1,7 @@
+// filepath: /c:/Users/User/Documents/Private Projects/student-help-app/student-help-app/backend/server.js
 require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 
 const subjectRoutes = require("./routes/subjects");
 
@@ -16,8 +18,16 @@ app.use((req, res, next) => {
 // Using routes
 app.use("/api/subjects", subjectRoutes);
 
-//listen for requests
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
+//connect to mongodb
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    //listen for requests
+    const PORT = process.env.PORT;
+    app.listen(PORT, () => {
+      console.log(`Connected to db & listening on port`, PORT);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
