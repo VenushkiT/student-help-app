@@ -1,18 +1,20 @@
 require("dotenv").config();
 const express = require("express");
 
+const subjectRoutes = require("./routes/subjects");
+
 //express app
 const app = express();
 
+//middleware
+app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next(); // Ensure the request proceeds to the next middleware or route handler
 });
 
-//routes
-app.get("/", (req, res) => {
-  res.json({ mssg: "welcome!" });
-});
+// Using routes
+app.use("/api/subjects", subjectRoutes);
 
 //listen for requests
 const PORT = process.env.PORT;
