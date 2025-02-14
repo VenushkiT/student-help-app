@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Create a new subject
 router.post("/", (req, res) => {
-  resjson({ mssg: "POST a new subject" });
+  res.json({ mssg: "POST a new subject" });
 });
 
 // Get all subjects
