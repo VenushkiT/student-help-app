@@ -6,6 +6,7 @@ const app = express();
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
+  next(); // Ensure the request proceeds to the next middleware or route handler
 });
 
 //routes
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 //listen for requests
-app.listen(process.env.PORT, () => {
-  console.log("listening on port 4000");
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });
