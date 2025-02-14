@@ -1,9 +1,7 @@
-// filepath: /c:/Users/User/Documents/Private Projects/student-help-app/student-help-app/backend/server.js
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-
-const subjectRoutes = require("./routes/subjects");
+const subjectRoutes = require("./routes/subjectRoutes");
 
 //express app
 const app = express();

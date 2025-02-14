@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router();
+const Subject = require("../models/subjectModels");
 
 // Create a new subject
-router.post("/", (req, res) => {
-  res.json({ mssg: "POST a new subject" });
+router.post("/", async (req, res) => {
+  const { title, description } = req.body;
+  const createdAt = new Date();
+  try {
+    const subject = await Subject.create({ title, description, createdAt });
+    res.status(200).json(subject);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 // Get all subjects
