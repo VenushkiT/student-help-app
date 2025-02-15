@@ -1,7 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const subjectRoutes = require("./routes/subjectRoutes");
+const subjectRoutes = require("./routes/subjectRoute");
+const materialRoutes = require("./routes/materialRoute");
 
 //express app
 const app = express();
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
 
 // Using routes
 app.use("/api/subjects", subjectRoutes);
+app.use("/api/materials", materialRoutes);
 
 //connect to mongodb
 mongoose

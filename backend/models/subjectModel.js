@@ -6,7 +6,7 @@ const subjectSchema = new Schema(
     title: {
       type: String,
       required: true,
-      trim: true // Removes extra spaces
+      trim: true
     },
     description: {
       type: String,
@@ -18,12 +18,12 @@ const subjectSchema = new Schema(
     //   ref: "User", // Reference to the User who created the subject
     //   required: true
     // },
-    // materials: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Material" // Reference to uploaded study materials
-    //   }
-    // ],
+    materials: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Material" // Reference to uploaded study materials
+      }
+    ],
 
     createdAt: {
       type: Date,
