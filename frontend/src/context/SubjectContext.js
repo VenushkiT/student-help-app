@@ -8,13 +8,15 @@ export const subjectReducer = (state, action) => {
       return { subjects: action.payload };
     case "CREATE_SUBJECT":
       return { subjects: [action.payload, ...state.subjects] };
+    case "DELETE_SUBJECT":
+      return { subjects: state.subjects.filter((w) => w._id !== action.payload._id) };
     default:
       return state;
   }
 };
 
 export const SubjectsContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(subjectReducer, { subjects: null });
+  const [state, dispatch] = useReducer(subjectReducer, { subjects: [] });
   return <SubjectsContext.Provider value={{ ...state, dispatch }}>{children}</SubjectsContext.Provider>;
 };
 
