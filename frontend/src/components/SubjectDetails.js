@@ -7,9 +7,9 @@ const SubjectDetails = ({ subject }) => {
     const response = await fetch(`/api/subjects/` + subject._id, {
       method: "DELETE"
     });
-    const json = await response.json();
+
     if (response.ok) {
-      dispatch({ type: "DELETE_SUBJECT", payload: json });
+      dispatch({ type: "DELETE_SUBJECT", payload: { _id: subject._id } });
     }
   };
 

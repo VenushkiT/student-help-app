@@ -9,7 +9,9 @@ export const subjectReducer = (state, action) => {
     case "CREATE_SUBJECT":
       return { subjects: [action.payload, ...state.subjects] };
     case "DELETE_SUBJECT":
-      return { subjects: state.subjects.filter((w) => w._id !== action.payload._id) };
+      const newSubjects = state.subjects.filter((w) => w._id !== action.payload._id);
+      return { subjects: newSubjects };
+
     default:
       return state;
   }
