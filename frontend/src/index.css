@@ -115,3 +115,14 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+
+input.error {
+  border-color: var(--error);
+}
+
+textarea.error {
+  border-color: var(--error);
+}
+p.error {
+  color: var(--error);
+}

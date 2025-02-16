@@ -9,7 +9,10 @@ const SubjectDetails = ({ subject }) => {
     });
 
     if (response.ok) {
+      console.log(`Subject with id: ${subject._id} deleted successfully`);
       dispatch({ type: "DELETE_SUBJECT", payload: { _id: subject._id } });
+    } else {
+      console.error(`Failed to delete subject with id: ${subject._id}`);
     }
   };
 
