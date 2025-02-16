@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useSubjectContext } from "../hooks/useSubjectContext";
-//import { set } from "mongoose";
+import { FormContext } from "../context/FormContext";
 
 const SubjectForm = () => {
   const { dispatch } = useSubjectContext();
+  const { setShowForm } = useContext(FormContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
@@ -31,6 +32,7 @@ const SubjectForm = () => {
       setError(null);
       setEmptyFields([]);
       dispatch({ type: "CREATE_SUBJECT", payload: json });
+      setShowForm(false); // Close the popup
     }
   };
 
@@ -59,4 +61,5 @@ const SubjectForm = () => {
     </form>
   );
 };
+
 export default SubjectForm;
