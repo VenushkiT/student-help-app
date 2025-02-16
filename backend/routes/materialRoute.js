@@ -1,37 +1,30 @@
 const express = require("express");
 const router = express.Router();
-const Material = require("../models/materialModel");
+const {
+  createMaterial,
+  getMaterials,
+  getMaterialsBySubject,
+  getSingleMaterial,
+  updateMaterial,
+  deleteMaterial
+} = require("../controllers/materialController");
 
 // Create a new material
-router.post("/", async (req, res) => {
-  const { title, type, url, subjectId } = req.body;
-  const createdAt = new Date();
-  try {
-    const material = await Material.create({ title, type, url, subjectId, createdAt });
-    res.status(200).json(material);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+router.post("/", createMaterial);
 
 // Get all materials
-router.get("/", (req, res) => {
-  res.json({ mssg: "GET all materials" });
-});
+router.get("/", getMaterials);
+
+// Get materials for a specific subject
+router.get("/subject/:subjectId", getMaterialsBySubject);
 
 // Get a single material
-router.get("/:id", (req, res) => {
-  res.json({ mssg: "GET a single material" });
-});
+router.get("/:id", getSingleMaterial);
 
 // Update a material
-router.patch("/:id", (req, res) => {
-  res.json({ mssg: "UPDATE a material" });
-});
+router.patch("/:id", updateMaterial);
 
 // Delete a material
-router.delete("/:id", (req, res) => {
-  res.json({ mssg: "DELETE a material" });
-});
+router.delete("/:id", deleteMaterial);
 
 module.exports = router;
