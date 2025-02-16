@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useSubjectContext } from "../hooks/useSubjectContext";
 import { FormContext } from "../context/FormContext";
 
-const SubjectForm = () => {
+const SubjectForm = ({ onSubjectCreated }) => {
   const { dispatch } = useSubjectContext();
   const { setShowForm } = useContext(FormContext);
   const [title, setTitle] = useState("");
@@ -32,7 +32,8 @@ const SubjectForm = () => {
       setError(null);
       setEmptyFields([]);
       dispatch({ type: "CREATE_SUBJECT", payload: json });
-      setShowForm(false); // Close the popup
+      setShowForm(false);
+      onSubjectCreated();
     }
   };
 

@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import SubjectDetails from "../components/SubjectDetails";
 import { useSubjectContext } from "../hooks/useSubjectContext";
 import { FormContext } from "../context/FormContext";
@@ -9,6 +9,7 @@ import SubjectForm from "../components/SubjectForm";
 const Home = () => {
   const { subjects, dispatch } = useSubjectContext();
   const { showForm, setShowForm } = useContext(FormContext);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -25,6 +26,13 @@ const Home = () => {
     setShowForm(false);
   };
 
+  const handleSubjectCreated = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
+  };
+
   return (
     <div className="home">
       <div className="subjects">
@@ -35,10 +43,12 @@ const Home = () => {
         <div className="popup">
           <div className="popup-content">
             <button onClick={handleCloseForm}>Close</button>
-            <SubjectForm />
+            <SubjectForm onSubjectCreated={handleSubjectCreated} />
           </div>
         </div>
       )}
+
+      {showSuccessMessage && <div className="success-message">Subject created successfully!</div>}
     </div>
   );
 };
