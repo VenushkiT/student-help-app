@@ -1,13 +1,21 @@
 const Material = require("../models/materialModel");
-const Subject = require("../models/subjectModel"); // Ensure you have the Subject model
+const Subject = require("../models/subjectModel");
 
-// Create a new material
 const createMaterial = async (req, res) => {
-  const { title, type, url, subjectId } = req.body;
+  const { title, type } = req.body;
+  const { subjectId } = req.params;
 
-  if (!title || !type || !url || !subjectId) {
+  // Check if all required fields are present
+  if (!title || !type || !subjectId) {
     return res.status(400).json({ error: "All fields are required." });
   }
+
+  // Ensure a file was uploaded
+  if (!req.file) {
+    return res.status(400).json({ error: "File is required." });
+  }
+
+  const filePath = req.file.path;
 
   try {
     // Check if the subjectId exists
@@ -16,7 +24,7 @@ const createMaterial = async (req, res) => {
       return res.status(400).json({ error: "Invalid subject ID." });
     }
 
-    const material = await Material.create({ title, type, url, subjectId });
+    const material = await Material.create({ title, type, filePath, subjectId });
     res.status(201).json(material);
   } catch (error) {
     res.status(400).json({ error: error.message });

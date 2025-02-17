@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../uploads/uploads");
 const {
   createMaterial,
   getMaterials,
@@ -10,7 +11,7 @@ const {
 } = require("../controllers/materialController");
 
 // Create a new material
-router.post("/", createMaterial);
+router.post("/subject/:subjectId", upload.single("file"), createMaterial);
 
 // Get all materials
 router.get("/", getMaterials);

@@ -13,16 +13,9 @@ const materialSchema = new Schema(
       enum: ["pdf", "video", "link", "note"],
       required: true
     },
-    url: {
+    filePath: {
       type: String,
-      required: true,
-      trim: true,
-      validate: {
-        validator: function (v) {
-          return /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/.test(v);
-        },
-        message: "Invalid URL format"
-      }
+      required: true
     },
     subjectId: {
       type: Schema.Types.ObjectId,
