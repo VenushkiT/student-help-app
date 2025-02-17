@@ -1,4 +1,5 @@
 import { useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SubjectDetails from "../components/SubjectDetails";
 import { useSubjectContext } from "../hooks/useSubjectContext";
 import { FormContext } from "../context/FormContext";
@@ -10,6 +11,7 @@ const Home = () => {
   const { subjects, dispatch } = useSubjectContext();
   const { showForm, setShowForm } = useContext(FormContext);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -33,10 +35,19 @@ const Home = () => {
     }, 3000);
   };
 
+  const handleSubjectClick = (subjectId) => {
+    navigate(`/subjects/${subjectId}`);
+  };
+
   return (
     <div className="home">
       <div className="subjects">
-        {subjects && subjects.map((subject) => <SubjectDetails key={subject._id} subject={subject} />)}
+        {subjects &&
+          subjects.map((subject) => (
+            <div key={subject._id} onClick={() => handleSubjectClick(subject._id)}>
+              <SubjectDetails subject={subject} />
+            </div>
+          ))}
       </div>
 
       {showForm && (

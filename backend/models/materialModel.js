@@ -10,7 +10,7 @@ const materialSchema = new Schema(
     },
     type: {
       type: String,
-      enum: ["pdf", "video", "link", "note"],
+      enum: ["pdf", "video", "link", "note", "doc", "docx", "image"],
       required: true
     },
     filePath: {
