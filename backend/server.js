@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const subjectRoutes = require("./routes/subjectRoute");
 const materialRoutes = require("./routes/materialRoute");
+const askRoutes = require("./routes/askRoutes");
 
 //express app
 const app = express();
@@ -11,13 +12,14 @@ const app = express();
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method);
-  next(); // Ensure the request proceeds to the next middleware or route handler
+  next();
 });
 
 // Using routes
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/materials", materialRoutes);
 app.use("/uploads", express.static("uploads"));
+app.use("/api/ask-ai", askRoutes);
 
 //connect to mongodb
 mongoose

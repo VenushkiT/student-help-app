@@ -5,6 +5,7 @@ import SubjectPage from "./pages/Subject";
 import Navbar from "./components/Navbar";
 import { FormProvider } from "./context/FormContext";
 import QuizGeneration from "./pages/QuizGeneration";
+import AskPage from "./pages/AskPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/subjects/:id" element={<SubjectPage />} />
               <Route path="/quizgeneration/:id" element={<QuizGeneration />} />
+              <Route path="/ask" element={<AskPage />} />
             </Routes>
           </div>
         </FormProvider>
