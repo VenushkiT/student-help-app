@@ -65,7 +65,7 @@ const StudyMaterials = ({ subjectId }) => {
     const encodedFilePath = encodeURIComponent(material.filePath);
     const encodedTitle = encodeURIComponent(material.title);
 
-    navigate(`/ask?file=${encodedFilePath}&title=${encodedTitle}`); // ✅ Updated Route
+    navigate(`/ask?file=${encodedFilePath}&title=${encodedTitle}`);
   };
 
   const getIconForType = (type) => {
