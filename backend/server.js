@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 // Using routes
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/materials", materialRoutes);
+app.use("/uploads", express.static("uploads"));
 
 //connect to mongodb
 mongoose
